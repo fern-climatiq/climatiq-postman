@@ -1,0 +1,1654 @@
+{
+    "info": {
+        "name": "api",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+        {
+            "key": "origin",
+            "value": "http://localhost:8080",
+            "type": "string"
+        },
+        {
+            "key": "token",
+            "value": "",
+            "type": "string"
+        }
+    ],
+    "auth": {
+        "bearer": [
+            {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "string"
+            }
+        ],
+        "type": "bearer"
+    },
+    "item": [
+        {
+            "name": "ClassificationsService",
+            "item": [
+                {
+                    "name": "estimate",
+                    "request": {
+                        "description": "This endpoint lets you specify an industry classification code (ISIC or NACE) \nand have Climatiq automatically select the appropriate emission factor. \nOne industry code might be linked to more than one emission factor. \nIf that happens, Climatiq will automatically select the most conservative emission factor. \nIf you would like to specify exactly what emission factor to use, you can specify other attributes to filter on, such as year, source or region.\n",
+                        "url": {
+                            "raw": "{{origin}}/classifications/estimate",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "classifications",
+                                "estimate"
+                            ],
+                            "query": []
+                        },
+                        "header": [],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"classification\": {\n        \"classification_code\": \"example\",\n        \"classification_type\": \"example\",\n        \"source\": \"example\",\n        \"region\": \"example\",\n        \"region_fallback\": true,\n        \"year\": \"example\",\n        \"lca_activity\": \"example\",\n        \"calculation_method\": \"ar4\"\n    },\n    \"parameters\": {\n        \"example\": \"example\"\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful estimate",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "This endpoint lets you specify an industry classification code (ISIC or NACE) \nand have Climatiq automatically select the appropriate emission factor. \nOne industry code might be linked to more than one emission factor. \nIf that happens, Climatiq will automatically select the most conservative emission factor. \nIf you would like to specify exactly what emission factor to use, you can specify other attributes to filter on, such as year, source or region.\n",
+                                "url": {
+                                    "raw": "{{origin}}/classifications/estimate",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "classifications",
+                                        "estimate"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"classification\": {\n        \"classification_code\": \"example\",\n        \"classification_type\": \"example\",\n        \"source\": \"example\",\n        \"region\": \"example\",\n        \"region_fallback\": true,\n        \"year\": \"example\",\n        \"lca_activity\": \"example\",\n        \"calculation_method\": \"ar4\"\n    },\n    \"parameters\": {\n        \"example\": \"example\"\n    }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "An Estimation that describes the total amount of co2e and the emission factor used.",
+                            "body": "{\n    \"co2e\": 0,\n    \"co2e_unit\": \"example\",\n    \"co2e_calculation_method\": \"example\",\n    \"co2e_calculation_origin\": \"example\",\n    \"emission_factor\": {\n        \"activity_id\": \"example\",\n        \"source\": \"example\",\n        \"year\": \"example\",\n        \"region\": \"example\",\n        \"category\": \"example\",\n        \"lca_activity\": \"example\"\n    },\n    \"constituent_gases\": {\n        \"co2e_total\": 0,\n        \"co2e_other\": 0,\n        \"co2\": 0,\n        \"ch4\": 0,\n        \"n2o\": 0\n    }\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CloudComputingService",
+            "item": [
+                {
+                    "name": "metadata",
+                    "request": {
+                        "url": {
+                            "raw": "{{origin}}/compute",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "compute"
+                            ],
+                            "query": []
+                        },
+                        "header": [],
+                        "method": "GET"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful metadata",
+                            "code": 200,
+                            "originalRequest": {
+                                "url": {
+                                    "raw": "{{origin}}/compute",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "compute"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [],
+                                "method": "GET"
+                            },
+                            "body": "{\n    \"cloud_providers\": {\n        \"aws\": {\n            \"provider_full_name\": \"example\",\n            \"provider_id\": \"example\",\n            \"cpu_regions\": [\n                \"example\"\n            ],\n            \"storage_regions\": [\n                \"example\"\n            ],\n            \"memory_regions\": [\n                \"example\"\n            ]\n        }\n    }\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "cpu",
+                    "request": {
+                        "description": "Calculate total estimated emissions based on the usage for a set number of virtual CPU's (vCPUs)",
+                        "url": {
+                            "raw": "{{origin}}/compute/:provider/cpu",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "compute",
+                                ":provider",
+                                "cpu"
+                            ],
+                            "query": []
+                        },
+                        "header": [],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cpu_count\": 0,\n    \"cpu_load\": 0,\n    \"duration\": 0\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful cpu",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Calculate total estimated emissions based on the usage for a set number of virtual CPU's (vCPUs)",
+                                "url": {
+                                    "raw": "{{origin}}/compute/:provider/cpu",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "compute",
+                                        ":provider",
+                                        "cpu"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"cpu_count\": 0,\n    \"cpu_load\": 0,\n    \"duration\": 0\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "You will get an Estimation back with the co2e for the power consumption for the allocated memory for the given duration.",
+                            "body": "{\n    \"co2e\": 0,\n    \"co2e_unit\": \"example\",\n    \"co2e_calculation_method\": \"example\",\n    \"co2e_calculation_origin\": \"example\",\n    \"emission_factor\": {\n        \"activity_id\": \"example\",\n        \"source\": \"example\",\n        \"year\": \"example\",\n        \"region\": \"example\",\n        \"category\": \"example\",\n        \"lca_activity\": \"example\"\n    },\n    \"constituent_gases\": {\n        \"co2e_total\": 0,\n        \"co2e_other\": 0,\n        \"co2\": 0,\n        \"ch4\": 0,\n        \"n2o\": 0\n    }\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "storage",
+                    "request": {
+                        "description": "Calculate total estimated emissions based on storing data for a set amount of time.",
+                        "url": {
+                            "raw": "{{origin}}/compute/:provider/storage",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "compute",
+                                ":provider",
+                                "storage"
+                            ],
+                            "query": []
+                        },
+                        "header": [],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"storage_type\": \"ssd\",\n    \"data\": 0,\n    \"data_unit\": \"example\",\n    \"duration\": 0\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful storage",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Calculate total estimated emissions based on storing data for a set amount of time.",
+                                "url": {
+                                    "raw": "{{origin}}/compute/:provider/storage",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "compute",
+                                        ":provider",
+                                        "storage"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"storage_type\": \"ssd\",\n    \"data\": 0,\n    \"data_unit\": \"example\",\n    \"duration\": 0\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "You will get an Estimation back with the CO2e for the storage of the data for the given duration.",
+                            "body": "{\n    \"co2e\": 0,\n    \"co2e_unit\": \"example\",\n    \"co2e_calculation_method\": \"example\",\n    \"co2e_calculation_origin\": \"example\",\n    \"emission_factor\": {\n        \"activity_id\": \"example\",\n        \"source\": \"example\",\n        \"year\": \"example\",\n        \"region\": \"example\",\n        \"category\": \"example\",\n        \"lca_activity\": \"example\"\n    },\n    \"constituent_gases\": {\n        \"co2e_total\": 0,\n        \"co2e_other\": 0,\n        \"co2\": 0,\n        \"ch4\": 0,\n        \"n2o\": 0\n    }\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "memory",
+                    "request": {
+                        "description": "Calculate total estimated emissions based on having memory (RAM) available for a set amount of time.",
+                        "url": {
+                            "raw": "{{origin}}/compute/:provider/memory",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "compute",
+                                ":provider",
+                                "memory"
+                            ],
+                            "query": []
+                        },
+                        "header": [],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": 0,\n    \"data_unit\": \"example\",\n    \"duration\": 0\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful memory",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Calculate total estimated emissions based on having memory (RAM) available for a set amount of time.",
+                                "url": {
+                                    "raw": "{{origin}}/compute/:provider/memory",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "compute",
+                                        ":provider",
+                                        "memory"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"data\": 0,\n    \"data_unit\": \"example\",\n    \"duration\": 0\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "You will get an Estimation back with the co2e emitted by having the allocated memory available for the given duration.",
+                            "body": "{\n    \"co2e\": 0,\n    \"co2e_unit\": \"example\",\n    \"co2e_calculation_method\": \"example\",\n    \"co2e_calculation_origin\": \"example\",\n    \"emission_factor\": {\n        \"activity_id\": \"example\",\n        \"source\": \"example\",\n        \"year\": \"example\",\n        \"region\": \"example\",\n        \"category\": \"example\",\n        \"lca_activity\": \"example\"\n    },\n    \"constituent_gases\": {\n        \"co2e_total\": 0,\n        \"co2e_other\": 0,\n        \"co2\": 0,\n        \"ch4\": 0,\n        \"n2o\": 0\n    }\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CustomActivitiesService",
+            "item": [
+                {
+                    "name": "estimate",
+                    "request": {
+                        "description": "Calculate total estimated emissions produced for a particular activity in kgCO2e using a custom activity that you have defined under the Activity Mapping tab inside your Climatiq Dashboard.\nA custom activity label provides the same flexibility as the ID it maps to. This can happen when multiple emission factors share an emission factor id or because you have mapped the same custom activity to different emission factor ids.\nYou can provide parameters to select emission factors by filtering using year, region, data source and more as described in our selector section. If there are multiple emission factors Climatiq will automatically pick the most conservative one.\n",
+                        "url": {
+                            "raw": "{{origin}}/custom-activities/estimate",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "custom-activities",
+                                "estimate"
+                            ],
+                            "query": []
+                        },
+                        "header": [],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"custom_activity\": {\n        \"label\": \"example\",\n        \"source\": \"example\",\n        \"region\": \"example\",\n        \"region_fallback\": true,\n        \"year\": \"example\",\n        \"lca_activity\": \"example\",\n        \"calculation_method\": \"ar4\"\n    },\n    \"parameters\": {\n        \"example\": \"UNKNOWN\"\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful estimate",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Calculate total estimated emissions produced for a particular activity in kgCO2e using a custom activity that you have defined under the Activity Mapping tab inside your Climatiq Dashboard.\nA custom activity label provides the same flexibility as the ID it maps to. This can happen when multiple emission factors share an emission factor id or because you have mapped the same custom activity to different emission factor ids.\nYou can provide parameters to select emission factors by filtering using year, region, data source and more as described in our selector section. If there are multiple emission factors Climatiq will automatically pick the most conservative one.\n",
+                                "url": {
+                                    "raw": "{{origin}}/custom-activities/estimate",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "custom-activities",
+                                        "estimate"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"custom_activity\": {\n        \"label\": \"example\",\n        \"source\": \"example\",\n        \"region\": \"example\",\n        \"region_fallback\": true,\n        \"year\": \"example\",\n        \"lca_activity\": \"example\",\n        \"calculation_method\": \"ar4\"\n    },\n    \"parameters\": {\n        \"example\": \"UNKNOWN\"\n    }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "body": "{\n    \"co2e\": 0,\n    \"co2e_unit\": \"example\",\n    \"co2e_calculation_method\": \"example\",\n    \"co2e_calculation_origin\": \"example\",\n    \"emission_factor\": {\n        \"activity_id\": \"example\",\n        \"source\": \"example\",\n        \"year\": \"example\",\n        \"region\": \"example\",\n        \"category\": \"example\",\n        \"lca_activity\": \"example\"\n    },\n    \"constituent_gases\": {\n        \"co2e_total\": 0,\n        \"co2e_other\": 0,\n        \"co2\": 0,\n        \"ch4\": 0,\n        \"n2o\": 0\n    }\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "batchCustomActivities",
+                    "request": {
+                        "description": "Batch estimations for custom activities work like regular Batch Estimates, allowing you to calculate multiple emission estimations in a single request, all based on custom activities mapped in the Climatiq Dashboard. Currently limited to maximum 100 operations per request.",
+                        "url": {
+                            "raw": "{{origin}}/custom-activities/batch",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "custom-activities",
+                                "batch"
+                            ],
+                            "query": []
+                        },
+                        "header": [],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[\n    {\n        \"custom_activity\": {\n            \"label\": \"example\",\n            \"source\": \"example\",\n            \"region\": \"example\",\n            \"region_fallback\": true,\n            \"year\": \"example\",\n            \"lca_activity\": \"example\",\n            \"calculation_method\": \"ar4\"\n        },\n        \"parameters\": {\n            \"example\": \"UNKNOWN\"\n        }\n    }\n]",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful batchCustomActivities",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Batch estimations for custom activities work like regular Batch Estimates, allowing you to calculate multiple emission estimations in a single request, all based on custom activities mapped in the Climatiq Dashboard. Currently limited to maximum 100 operations per request.",
+                                "url": {
+                                    "raw": "{{origin}}/custom-activities/batch",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "custom-activities",
+                                        "batch"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "[\n    {\n        \"custom_activity\": {\n            \"label\": \"example\",\n            \"source\": \"example\",\n            \"region\": \"example\",\n            \"region_fallback\": true,\n            \"year\": \"example\",\n            \"lca_activity\": \"example\",\n            \"calculation_method\": \"ar4\"\n        },\n        \"parameters\": {\n            \"example\": \"UNKNOWN\"\n        }\n    }\n]",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "List of results for every operation.",
+                            "body": "{\n    \"results\": [\n        {\n            \"co2e\": 0,\n            \"co2e_unit\": \"example\",\n            \"co2e_calculation_method\": \"example\",\n            \"co2e_calculation_origin\": \"example\",\n            \"emission_factor\": {\n                \"activity_id\": \"example\",\n                \"source\": \"example\",\n                \"year\": \"example\",\n                \"region\": \"example\",\n                \"category\": \"example\",\n                \"lca_activity\": \"example\"\n            },\n            \"constituent_gases\": {\n                \"co2e_total\": 0,\n                \"co2e_other\": 0,\n                \"co2\": 0,\n                \"ch4\": 0,\n                \"n2o\": 0\n            }\n        }\n    ]\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "EmissionFactorsService",
+            "item": [
+                {
+                    "name": "search",
+                    "request": {
+                        "description": "Allows you to determine what emission factors are available to be used in your estimates.\nYou can search for free-text queries with the query parameter, or filter by parameters such as category, source, region, year calculation_method, lca_activity or id.\nIf you are using the query parameter, the results will be returned in order of how well they match your free-text query.\nThis endpoint is paginated, and will return current_page and last_page so you can determine which page you are on. You switch pages by using the page query parameter.\n",
+                        "url": {
+                            "raw": "{{origin}}/search?query=&uuid=&activity_id=&id=&category=&sector=&source=&year=&region=&lca_activity=&unit_type=&calculation_method=&page=&results_per_page=",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "search"
+                            ],
+                            "query": [
+                                {
+                                    "key": "query",
+                                    "value": "",
+                                    "description": "A free-text query that will match ids, names, descriptions, etc. of emission factors. \nThis uses fuzzy matching, so your query does not need to be precise. \nSpaces need to be encoded as + or %20 . \nDefault is \"\"\n"
+                                },
+                                {
+                                    "key": "uuid",
+                                    "value": "",
+                                    "description": "Filter by the ID of a specific emission factor.\tDefault is `all`"
+                                },
+                                {
+                                    "key": "activity_id",
+                                    "value": "",
+                                    "description": "Filter by the id of a specific activity. Multiple emission factors might share the same activity. You may specify an asterix (*) at the end of the id to act as a wildcard character, matching any ids that begin with the string before the asterix."
+                                },
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "A deprecated alias for activity_id. Use activity_id instead, as this will be deprecated next version."
+                                },
+                                {
+                                    "key": "category",
+                                    "value": "",
+                                    "description": "Filters by emission factor category"
+                                },
+                                {
+                                    "key": "sector",
+                                    "value": "",
+                                    "description": "Filters by emission factor sector"
+                                },
+                                {
+                                    "key": "source",
+                                    "value": "",
+                                    "description": "Filters emission factors by data source"
+                                },
+                                {
+                                    "key": "year",
+                                    "value": "",
+                                    "description": "Filters emission factors by year factor was released"
+                                },
+                                {
+                                    "key": "region",
+                                    "value": "",
+                                    "description": "Filters emission factors by geographic region to which it applies. You may specify an asterix (*) at the end of the region to act as a wildcard character, matching any regions, such as sub-regions, that begin with the string before the asterix."
+                                },
+                                {
+                                    "key": "lca_activity",
+                                    "value": "",
+                                    "description": "The Life Cycle Assessment (LCA) activity with which this factor is associated."
+                                },
+                                {
+                                    "key": "unit_type",
+                                    "value": "",
+                                    "description": "Filters emission factors by what unit (such as money, energy or volume) the factor accepts."
+                                },
+                                {
+                                    "key": "calculation_method",
+                                    "value": "",
+                                    "description": "The calculation method that is used to calculate the emission factor. Can be either ar4 or ar5"
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "",
+                                    "description": "Which page of results to retrieve."
+                                },
+                                {
+                                    "key": "results_per_page",
+                                    "value": "",
+                                    "description": "How many results to return per page. Max is 100."
+                                }
+                            ]
+                        },
+                        "header": [],
+                        "method": "GET"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful search",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Allows you to determine what emission factors are available to be used in your estimates.\nYou can search for free-text queries with the query parameter, or filter by parameters such as category, source, region, year calculation_method, lca_activity or id.\nIf you are using the query parameter, the results will be returned in order of how well they match your free-text query.\nThis endpoint is paginated, and will return current_page and last_page so you can determine which page you are on. You switch pages by using the page query parameter.\n",
+                                "url": {
+                                    "raw": "{{origin}}/search?query=&uuid=&activity_id=&id=&category=&sector=&source=&year=&region=&lca_activity=&unit_type=&calculation_method=&page=&results_per_page=",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "search"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "query",
+                                            "value": "",
+                                            "description": "A free-text query that will match ids, names, descriptions, etc. of emission factors. \nThis uses fuzzy matching, so your query does not need to be precise. \nSpaces need to be encoded as + or %20 . \nDefault is \"\"\n"
+                                        },
+                                        {
+                                            "key": "uuid",
+                                            "value": "",
+                                            "description": "Filter by the ID of a specific emission factor.\tDefault is `all`"
+                                        },
+                                        {
+                                            "key": "activity_id",
+                                            "value": "",
+                                            "description": "Filter by the id of a specific activity. Multiple emission factors might share the same activity. You may specify an asterix (*) at the end of the id to act as a wildcard character, matching any ids that begin with the string before the asterix."
+                                        },
+                                        {
+                                            "key": "id",
+                                            "value": "",
+                                            "description": "A deprecated alias for activity_id. Use activity_id instead, as this will be deprecated next version."
+                                        },
+                                        {
+                                            "key": "category",
+                                            "value": "",
+                                            "description": "Filters by emission factor category"
+                                        },
+                                        {
+                                            "key": "sector",
+                                            "value": "",
+                                            "description": "Filters by emission factor sector"
+                                        },
+                                        {
+                                            "key": "source",
+                                            "value": "",
+                                            "description": "Filters emission factors by data source"
+                                        },
+                                        {
+                                            "key": "year",
+                                            "value": "",
+                                            "description": "Filters emission factors by year factor was released"
+                                        },
+                                        {
+                                            "key": "region",
+                                            "value": "",
+                                            "description": "Filters emission factors by geographic region to which it applies. You may specify an asterix (*) at the end of the region to act as a wildcard character, matching any regions, such as sub-regions, that begin with the string before the asterix."
+                                        },
+                                        {
+                                            "key": "lca_activity",
+                                            "value": "",
+                                            "description": "The Life Cycle Assessment (LCA) activity with which this factor is associated."
+                                        },
+                                        {
+                                            "key": "unit_type",
+                                            "value": "",
+                                            "description": "Filters emission factors by what unit (such as money, energy or volume) the factor accepts."
+                                        },
+                                        {
+                                            "key": "calculation_method",
+                                            "value": "",
+                                            "description": "The calculation method that is used to calculate the emission factor. Can be either ar4 or ar5"
+                                        },
+                                        {
+                                            "key": "page",
+                                            "value": "",
+                                            "description": "Which page of results to retrieve."
+                                        },
+                                        {
+                                            "key": "results_per_page",
+                                            "value": "",
+                                            "description": "How many results to return per page. Max is 100."
+                                        }
+                                    ]
+                                },
+                                "header": [],
+                                "method": "GET"
+                            },
+                            "body": "{\n    \"results\": [\n        {\n            \"uuid\": \"example\",\n            \"activity_id\": \"example\",\n            \"id\": \"example\",\n            \"access_type\": \"example\",\n            \"name\": \"example\",\n            \"category\": \"example\",\n            \"sector\": \"example\",\n            \"source\": \"example\",\n            \"source_link\": \"example\",\n            \"uncertainty\": 0,\n            \"year\": \"example\",\n            \"region\": \"example\",\n            \"region_name\": \"example\",\n            \"description\": \"example\",\n            \"unit_type\": [\n                \"example\"\n            ],\n            \"unit\": \"example\",\n            \"lca_activity\": \"example\",\n            \"supported_calculation_methods\": [\n                \"example\"\n            ],\n            \"factor\": 0,\n            \"factor_calculation_method\": \"ar4\",\n            \"factor_calculation_origin\": \"climatiq\",\n            \"constituent_gases\": {\n                \"co2e_total\": 0,\n                \"co2e_other\": 0,\n                \"co2\": 0,\n                \"ch4\": 0,\n                \"n2o\": 0\n            }\n        }\n    ],\n    \"current_page\": 0,\n    \"last_page\": 0,\n    \"total_results\": 0,\n    \"possible_filters\": {\n        \"year\": [\n            \"example\"\n        ],\n        \"source\": [\n            \"example\"\n        ],\n        \"region\": [\n            {\n                \"id\": \"example\",\n                \"name\": \"example\"\n            }\n        ],\n        \"category\": [\n            \"example\"\n        ],\n        \"sector\": [\n            \"example\"\n        ],\n        \"unit_type\": [\n            \"example\"\n        ]\n    }\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "getYears",
+                    "request": {
+                        "description": "Not all emission factors have data for all years. This endpoint returns a list of years available for a given query.",
+                        "url": {
+                            "raw": "{{origin}}/emission-factors/years?category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "emission-factors",
+                                "years"
+                            ],
+                            "query": [
+                                {
+                                    "key": "category",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "source",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "region",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "year",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "calculation_method",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "lca_activity",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "activity_id",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "header": [],
+                        "method": "GET"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful getYears",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Not all emission factors have data for all years. This endpoint returns a list of years available for a given query.",
+                                "url": {
+                                    "raw": "{{origin}}/emission-factors/years?category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "emission-factors",
+                                        "years"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "category",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "source",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "region",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "year",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "calculation_method",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "lca_activity",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "activity_id",
+                                            "value": ""
+                                        }
+                                    ]
+                                },
+                                "header": [],
+                                "method": "GET"
+                            },
+                            "body": "{\n    \"results\": [\n        \"example\"\n    ]\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "getSources",
+                    "request": {
+                        "url": {
+                            "raw": "{{origin}}/emission-factors/sources?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&iactivity_idd=",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "emission-factors",
+                                "sources"
+                            ],
+                            "query": [
+                                {
+                                    "key": "sector",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "category",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "source",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "region",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "year",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "calculation_method",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "lca_activity",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "iactivity_idd",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "header": [],
+                        "method": "GET"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful getSources",
+                            "code": 200,
+                            "originalRequest": {
+                                "url": {
+                                    "raw": "{{origin}}/emission-factors/sources?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&iactivity_idd=",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "emission-factors",
+                                        "sources"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "sector",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "category",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "source",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "region",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "year",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "calculation_method",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "lca_activity",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "iactivity_idd",
+                                            "value": ""
+                                        }
+                                    ]
+                                },
+                                "header": [],
+                                "method": "GET"
+                            },
+                            "body": "{\n    \"results\": [\n        \"example\"\n    ]\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "getRegions",
+                    "request": {
+                        "description": "Not all emission factors have data for all geographic regions. This endpoint returns a list of regions available for a given query.",
+                        "url": {
+                            "raw": "{{origin}}/emission-factors/regions?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "emission-factors",
+                                "regions"
+                            ],
+                            "query": [
+                                {
+                                    "key": "sector",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "category",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "source",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "region",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "year",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "calculation_method",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "lca_activity",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "activity_id",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "header": [],
+                        "method": "GET"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful getRegions",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Not all emission factors have data for all geographic regions. This endpoint returns a list of regions available for a given query.",
+                                "url": {
+                                    "raw": "{{origin}}/emission-factors/regions?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "emission-factors",
+                                        "regions"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "sector",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "category",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "source",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "region",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "year",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "calculation_method",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "lca_activity",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "activity_id",
+                                            "value": ""
+                                        }
+                                    ]
+                                },
+                                "header": [],
+                                "method": "GET"
+                            },
+                            "body": "{\n    \"results\": [\n        {\n            \"id\": \"example\",\n            \"name\": \"example\"\n        }\n    ]\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "getCategories",
+                    "request": {
+                        "description": "Returns a list of categories available for a given query.",
+                        "url": {
+                            "raw": "{{origin}}/emission-factors/categories?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "emission-factors",
+                                "categories"
+                            ],
+                            "query": [
+                                {
+                                    "key": "sector",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "category",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "source",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "region",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "year",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "calculation_method",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "lca_activity",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "activity_id",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "header": [],
+                        "method": "GET"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful getCategories",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Returns a list of categories available for a given query.",
+                                "url": {
+                                    "raw": "{{origin}}/emission-factors/categories?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "emission-factors",
+                                        "categories"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "sector",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "category",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "source",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "region",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "year",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "calculation_method",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "lca_activity",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "activity_id",
+                                            "value": ""
+                                        }
+                                    ]
+                                },
+                                "header": [],
+                                "method": "GET"
+                            },
+                            "body": "{\n    \"results\": [\n        \"example\"\n    ]\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "getSectors",
+                    "request": {
+                        "description": "Returns a list of sectors available for a given query.",
+                        "url": {
+                            "raw": "{{origin}}/emission-factors/sectors?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "emission-factors",
+                                "sectors"
+                            ],
+                            "query": [
+                                {
+                                    "key": "sector",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "category",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "source",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "region",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "year",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "calculation_method",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "lca_activity",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "activity_id",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "header": [],
+                        "method": "GET"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful getSectors",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Returns a list of sectors available for a given query.",
+                                "url": {
+                                    "raw": "{{origin}}/emission-factors/sectors?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "emission-factors",
+                                        "sectors"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "sector",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "category",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "source",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "region",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "year",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "calculation_method",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "lca_activity",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "activity_id",
+                                            "value": ""
+                                        }
+                                    ]
+                                },
+                                "header": [],
+                                "method": "GET"
+                            },
+                            "body": "{\n    \"results\": [\n        \"example\"\n    ]\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "getLcaActivities",
+                    "request": {
+                        "description": "Returns a list of life cycle assessment(LCA) activities available for a given query.",
+                        "url": {
+                            "raw": "{{origin}}/emission-factors/lca-activities?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "emission-factors",
+                                "lca-activities"
+                            ],
+                            "query": [
+                                {
+                                    "key": "sector",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "category",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "source",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "region",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "year",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "calculation_method",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "lca_activity",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "activity_id",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "header": [],
+                        "method": "GET"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful getLcaActivities",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Returns a list of life cycle assessment(LCA) activities available for a given query.",
+                                "url": {
+                                    "raw": "{{origin}}/emission-factors/lca-activities?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "emission-factors",
+                                        "lca-activities"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "sector",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "category",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "source",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "region",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "year",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "calculation_method",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "lca_activity",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "activity_id",
+                                            "value": ""
+                                        }
+                                    ]
+                                },
+                                "header": [],
+                                "method": "GET"
+                            },
+                            "body": "{\n    \"results\": [\n        \"example\"\n    ]\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "getUnitTypes",
+                    "request": {
+                        "description": "Returns a list of unit types available for a given query.",
+                        "url": {
+                            "raw": "{{origin}}/emission-factors?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "emission-factors"
+                            ],
+                            "query": [
+                                {
+                                    "key": "sector",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "category",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "source",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "region",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "year",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "calculation_method",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "lca_activity",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "activity_id",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "header": [],
+                        "method": "GET"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful getUnitTypes",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Returns a list of unit types available for a given query.",
+                                "url": {
+                                    "raw": "{{origin}}/emission-factors?sector=&category=&source=&region=&year=&calculation_method=&lca_activity=&activity_id=",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "emission-factors"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "sector",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "category",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "source",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "region",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "year",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "calculation_method",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "lca_activity",
+                                            "value": ""
+                                        },
+                                        {
+                                            "key": "activity_id",
+                                            "value": ""
+                                        }
+                                    ]
+                                },
+                                "header": [],
+                                "method": "GET"
+                            },
+                            "body": "{\n    \"results\": [\n        \"example\"\n    ]\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "EstimationService",
+            "item": [
+                {
+                    "name": "estimate",
+                    "request": {
+                        "description": "Calculate total estimated emissions produced for a particular activity, in `kgCO2e``, using the available emission factors. All requests are performed by sending a POST request to the following endpoint",
+                        "url": {
+                            "raw": "{{origin}}/estimate",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "estimate"
+                            ],
+                            "query": []
+                        },
+                        "header": [],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"emission_factor\": {\n        \"activity_id\": \"example\",\n        \"source\": \"example\",\n        \"region\": \"example\",\n        \"region_fallback\": true,\n        \"year\": \"example\",\n        \"lca_activity\": \"example\",\n        \"calculation_method\": \"ar4\"\n    },\n    \"parameters\": \"UNKNOWN\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful estimate",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Calculate total estimated emissions produced for a particular activity, in `kgCO2e``, using the available emission factors. All requests are performed by sending a POST request to the following endpoint",
+                                "url": {
+                                    "raw": "{{origin}}/estimate",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "estimate"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"emission_factor\": {\n        \"activity_id\": \"example\",\n        \"source\": \"example\",\n        \"region\": \"example\",\n        \"region_fallback\": true,\n        \"year\": \"example\",\n        \"lca_activity\": \"example\",\n        \"calculation_method\": \"ar4\"\n    },\n    \"parameters\": \"UNKNOWN\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "An Estimation that describes the total amount of co2e and the emission factor used.",
+                            "body": "{\n    \"co2e\": 0,\n    \"co2e_unit\": \"example\",\n    \"co2e_calculation_method\": \"example\",\n    \"co2e_calculation_origin\": \"example\",\n    \"emission_factor\": {\n        \"activity_id\": \"example\",\n        \"source\": \"example\",\n        \"year\": \"example\",\n        \"region\": \"example\",\n        \"category\": \"example\",\n        \"lca_activity\": \"example\"\n    },\n    \"constituent_gases\": {\n        \"co2e_total\": 0,\n        \"co2e_other\": 0,\n        \"co2\": 0,\n        \"ch4\": 0,\n        \"n2o\": 0\n    }\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "batchEstimate",
+                    "request": {
+                        "description": "This endpoint returns an Estimation, which includes the total amount of emissions in kgCO2e and the emission factor used to calculate the emissions.",
+                        "url": {
+                            "raw": "{{origin}}/batch",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "batch"
+                            ],
+                            "query": []
+                        },
+                        "header": [],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[\n    {\n        \"emission_factor\": {\n            \"activity_id\": \"example\",\n            \"source\": \"example\",\n            \"region\": \"example\",\n            \"region_fallback\": true,\n            \"year\": \"example\",\n            \"lca_activity\": \"example\",\n            \"calculation_method\": \"ar4\"\n        },\n        \"parameters\": \"UNKNOWN\"\n    }\n]",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful batchEstimate",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "This endpoint returns an Estimation, which includes the total amount of emissions in kgCO2e and the emission factor used to calculate the emissions.",
+                                "url": {
+                                    "raw": "{{origin}}/batch",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "batch"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "[\n    {\n        \"emission_factor\": {\n            \"activity_id\": \"example\",\n            \"source\": \"example\",\n            \"region\": \"example\",\n            \"region_fallback\": true,\n            \"year\": \"example\",\n            \"lca_activity\": \"example\",\n            \"calculation_method\": \"ar4\"\n        },\n        \"parameters\": \"UNKNOWN\"\n    }\n]",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "The response includes a list of Estimations.",
+                            "body": "{\n    \"response\": [\n        {\n            \"type\": \"response\",\n            \"co2e\": 0,\n            \"co2e_unit\": \"example\",\n            \"co2e_calculation_method\": \"example\",\n            \"co2e_calculation_origin\": \"example\",\n            \"emission_factor\": {\n                \"activity_id\": \"example\",\n                \"source\": \"example\",\n                \"year\": \"example\",\n                \"region\": \"example\",\n                \"category\": \"example\",\n                \"lca_activity\": \"example\"\n            },\n            \"constituent_gases\": {\n                \"co2e_total\": 0,\n                \"co2e_other\": 0,\n                \"co2\": 0,\n                \"ch4\": 0,\n                \"n2o\": 0\n            }\n        }\n    ]\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "FlightsService",
+            "item": [
+                {
+                    "name": "travelFlights",
+                    "request": {
+                        "description": "Calculate total estimated emissions produced by passenger flights between the specified airports",
+                        "url": {
+                            "raw": "{{origin}}/travel/flights",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "travel",
+                                "flights"
+                            ],
+                            "query": []
+                        },
+                        "header": [],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"legs\": [\n        {\n            \"passengers\": 0,\n            \"class\": \"example\",\n            \"emission_factor\": {\n                \"activity_id\": \"example\",\n                \"source\": \"example\",\n                \"region\": \"example\",\n                \"region_fallback\": true,\n                \"year\": \"example\",\n                \"lca_activity\": \"example\",\n                \"calculation_method\": \"ar4\"\n            }\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful travelFlights",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Calculate total estimated emissions produced by passenger flights between the specified airports",
+                                "url": {
+                                    "raw": "{{origin}}/travel/flights",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "travel",
+                                        "flights"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"legs\": [\n        {\n            \"passengers\": 0,\n            \"class\": \"example\",\n            \"emission_factor\": {\n                \"activity_id\": \"example\",\n                \"source\": \"example\",\n                \"region\": \"example\",\n                \"region_fallback\": true,\n                \"year\": \"example\",\n                \"lca_activity\": \"example\",\n                \"calculation_method\": \"ar4\"\n            }\n        }\n    ]\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "The response includes the total emissions for the trip in kgCO2e, and the emissions for each leg of the trip.",
+                            "body": "{\n    \"co2e\": 0,\n    \"cot2e_unit\": \"example\",\n    \"legs\": [\n        {\n            \"co2e\": 0,\n            \"co2e_unit\": \"example\",\n            \"co2e_calculation_method\": \"example\",\n            \"co2e_calculation_origin\": \"example\",\n            \"emission_factor\": {\n                \"activity_id\": \"example\",\n                \"source\": \"example\",\n                \"year\": \"example\",\n                \"region\": \"example\",\n                \"category\": \"example\",\n                \"lca_activity\": \"example\"\n            },\n            \"constituent_gases\": {\n                \"co2e_total\": 0,\n                \"co2e_other\": 0,\n                \"co2\": 0,\n                \"ch4\": 0,\n                \"n2o\": 0\n            }\n        }\n    ]\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "freightFlights",
+                    "request": {
+                        "description": "Calculate total estimated emissions produced by freight flights between the specified airport.",
+                        "url": {
+                            "raw": "{{origin}}/freight/flights",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "freight",
+                                "flights"
+                            ],
+                            "query": []
+                        },
+                        "header": [],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"legs\": [\n        {\n            \"weight\": 0,\n            \"weight_unit\": \"example\",\n            \"emission_factor\": {\n                \"activity_id\": \"example\",\n                \"source\": \"example\",\n                \"region\": \"example\",\n                \"region_fallback\": true,\n                \"year\": \"example\",\n                \"lca_activity\": \"example\",\n                \"calculation_method\": \"ar4\"\n            }\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful freightFlights",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Calculate total estimated emissions produced by freight flights between the specified airport.",
+                                "url": {
+                                    "raw": "{{origin}}/freight/flights",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "freight",
+                                        "flights"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"legs\": [\n        {\n            \"weight\": 0,\n            \"weight_unit\": \"example\",\n            \"emission_factor\": {\n                \"activity_id\": \"example\",\n                \"source\": \"example\",\n                \"region\": \"example\",\n                \"region_fallback\": true,\n                \"year\": \"example\",\n                \"lca_activity\": \"example\",\n                \"calculation_method\": \"ar4\"\n            }\n        }\n    ]\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "The response includes the total emissions for the trip in kgCO2e, and the emissions for each leg of the trip.",
+                            "body": "{\n    \"co2e\": 0,\n    \"cot2e_unit\": \"example\",\n    \"legs\": [\n        {\n            \"co2e\": 0,\n            \"co2e_unit\": \"example\",\n            \"co2e_calculation_method\": \"example\",\n            \"co2e_calculation_origin\": \"example\",\n            \"emission_factor\": {\n                \"activity_id\": \"example\",\n                \"source\": \"example\",\n                \"year\": \"example\",\n                \"region\": \"example\",\n                \"category\": \"example\",\n                \"lca_activity\": \"example\"\n            },\n            \"constituent_gases\": {\n                \"co2e_total\": 0,\n                \"co2e_other\": 0,\n                \"co2\": 0,\n                \"ch4\": 0,\n                \"n2o\": 0\n            }\n        }\n    ]\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
