@@ -1,6 +1,8 @@
 # Climatiq API Postman Collection
 
-This repository contains a [Postman Collection](https://learning.postman.com/docs/sending-requests/intro-to-collections/) for <https://www.climatiq.io/docs>.
+This repository contains a Postman Collection for <https://www.climatiq.io/docs>.
+
+[Join the Postman Workspace.](https://www.postman.com/fern-api/workspace/fern-climatiq) The Postman Collection will auto-sync anytime the Climatiq API is updated.
 
 ## What is a Postman Collection?
 
