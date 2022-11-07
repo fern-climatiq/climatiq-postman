@@ -12,8 +12,8 @@ jobs:
         uses: actions/checkout@v3
       
       - name: Publish Postman Collection
-        uses: fern-api/action-postman-sync@v1.1
+        uses: fern-api/action-postman-sync@v1.2
         with:
-          api-key: ${{ secrets.FERN_POSTMAN_API_KEY }}
-          workspace-id: ${{ secrets.FERN_POSTMAN_WORKSPACE_ID }}
+          api-key: ${{ secrets.POSTMAN_API_KEY }}
+          workspace-id: ${{ secrets.POSTMAN_WORKSPACE }}
           collection-path: collection.json
